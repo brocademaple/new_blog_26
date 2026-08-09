@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "clusters": [
+    {
+      "id": "material-broken-sun",
+      "room": "material",
+      "title": "Broken Sun",
+      "subtitle": "A material study in four fragments",
+      "center": [
+        -0.35,
+        2.74
+      ],
+      "radius": 1.62,
+      "tiles": [
+        {
+          "artworkId": "04-texture-material-black-leather-handbag-01",
+          "shape": "hero",
+          "x": -0.72,
+          "y": 0.12,
+          "scale": 1.0,
+          "rotation": -0.08
+        },
+        {
+          "artworkId": "04-texture-material-brushed-metal-watch-01",
+          "shape": "triangle",
+          "x": 0.72,
+          "y": 0.72,
+          "scale": 0.82,
+          "rotation": 0.2
+        },
+        {
+          "artworkId": "04-texture-material-cobalt-ceramic-bowl-01",
+          "shape": "trapezoid",
+          "x": 0.92,
+          "y": -0.52,
+          "scale": 0.76,
+          "rotation": -0.16
+        },
+        {
+          "artworkId": "04-texture-material-embroidered-silk-pouch-01",
+          "shape": "arc",
+          "x": -0.02,
+          "y": -0.78,
+          "scale": 0.72,
+          "rotation": 0.1
+        }
+      ]
+    }
+  ]
+}
