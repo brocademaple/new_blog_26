@@ -1,9 +1,11 @@
+{{- $brandMark := resources.Get "brocademaple-maple-mark.png" -}}
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>brocademaple</title>
+<link rel="icon" href="{{ $brandMark.RelPermalink }}">
 <style>
   /* HANDOFF NOTE FOR CODEX:
      Fonts below load from Google Fonts CDN. If this needs to work offline or
@@ -494,12 +496,12 @@
 
   <nav>
     <div class="brand">
-      <div class="brand-mark"><img src="/assets/brocademaple-maple-mark.png" alt="brocademaple maple mark"></div>
+      <div class="brand-mark"><img src="{{ $brandMark.RelPermalink }}" alt="brocademaple maple mark"></div>
       <div class="brand-name">brocademaple</div>
     </div>
     <div class="nav-links">
       <a href="/gallery/">Gallery</a>
-      <a href="#projects" class="nav-cta">Projects</a>
+      <a href="#projects" class="nav-cta">Side Projects</a>
     </div>
   </nav>
 

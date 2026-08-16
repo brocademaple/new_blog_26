@@ -1,0 +1,14 @@
+{
+  "source": "personal-feishu-base",
+  "baseToken": "W90nb0w5raux1gsVnu0cwiYDnhg",
+  "profile": "cli_aada483257381cd2",
+  "groups": 127,
+  "images": 508,
+  "mainImages": 496,
+  "auditRetryImages": 12,
+  "publishedAssetsEnriched": 288,
+  "manifestAssets": 496,
+  "manifestAssetsAvailable": 288,
+  "comparisons": 10,
+  "validation": "passed"
+}

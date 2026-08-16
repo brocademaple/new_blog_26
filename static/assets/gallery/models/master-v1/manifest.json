@@ -1,0 +1,80 @@
+{
+  "version": "master-v1",
+  "source": "/Users/eee/Desktop/code/selfy/brocade-portfolio/assets/gallery/blender/atlantis-gallery-master-v1.blend",
+  "source_mtime": 1786877402.7696676,
+  "modules": [
+    {
+      "asset": "atlantis-environment",
+      "collection": "00_ENVIRONMENT",
+      "glb": "atlantis-environment.glb",
+      "bytes": 6562936,
+      "objects": 120,
+      "meshes": 76,
+      "curves": 43,
+      "origin": "blender-master-world",
+      "units": "meter",
+      "up_axis": "+Y"
+    },
+    {
+      "asset": "atlantis-route",
+      "collection": "01_PROCESSIONAL_ROUTE",
+      "glb": "atlantis-route.glb",
+      "bytes": 6829816,
+      "objects": 27,
+      "meshes": 3,
+      "curves": 0,
+      "origin": "blender-master-world",
+      "units": "meter",
+      "up_axis": "+Y"
+    },
+    {
+      "asset": "atlantis-archive",
+      "collection": "02_ARCHIVE_OF_TIDES",
+      "glb": "atlantis-archive.glb",
+      "bytes": 7800432,
+      "objects": 77,
+      "meshes": 71,
+      "curves": 0,
+      "origin": "blender-master-world",
+      "units": "meter",
+      "up_axis": "+Y"
+    },
+    {
+      "asset": "atlantis-cliff-gallery",
+      "collection": "03_CLIFF_GALLERY",
+      "glb": "atlantis-cliff-gallery.glb",
+      "bytes": 7787432,
+      "objects": 80,
+      "meshes": 75,
+      "curves": 0,
+      "origin": "blender-master-world",
+      "units": "meter",
+      "up_axis": "+Y"
+    },
+    {
+      "asset": "atlantis-palace-complex",
+      "collection": "04_PALACE_COMPLEX",
+      "glb": "atlantis-palace-complex.glb",
+      "bytes": 13633592,
+      "objects": 372,
+      "meshes": 355,
+      "curves": 13,
+      "origin": "blender-master-world",
+      "units": "meter",
+      "up_axis": "+Y"
+    },
+    {
+      "asset": "atlantis-ecology",
+      "collection": "05_ECOLOGY_AND_RUINS",
+      "glb": "atlantis-ecology.glb",
+      "bytes": 7336552,
+      "objects": 206,
+      "meshes": 132,
+      "curves": 41,
+      "origin": "blender-master-world",
+      "units": "meter",
+      "up_axis": "+Y"
+    }
+  ],
+  "total_bytes": 49950760
+}

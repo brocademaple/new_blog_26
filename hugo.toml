@@ -1,10 +1,8 @@
 baseURL = 'https://brocademaple.github.io/'
-languageCode = 'zh-cn'
+locale = 'zh-cn'
 defaultContentLanguage = 'zh-cn'
 title = 'BCMP 的技术博客'
-[module]
-  [[module.imports]]
-    path = "github.com/CaiJimmy/hugo-theme-stack/v3"
+theme = 'hugo-theme-stack'
 
 # 新版本的分页设置
 # [pagination]
@@ -21,7 +19,7 @@ enableGitInfo = false
 
 # 多语言设置
 [languages.zh-cn]
-  languageName = '中文'
+  label = '中文'
   weight = 1
   title = 'BCMP 的技术博客'
 

@@ -1,0 +1,804 @@
+[
+  {
+    "type": "comparison",
+    "experimentId": "mje_01_scene_too_full",
+    "title": "画面过满",
+    "reasonCategory": "构图",
+    "dislike": "所有区域都抢注意力",
+    "correction": "只保留一个发光主体，背景降噪",
+    "avoid": "maximalist, intricate everywhere, countless objects",
+    "before": {
+      "groupId": "mjg_d14b4654-198a-4394-86d3-2695bbc5f5c1",
+      "prompt": "A maximalist fantasy library filled with thousands of glowing objects, intricate ornaments everywhere, dramatic magical particles, epic cinematic scene",
+      "translation": "把“处处都有细节”改为“单一焦点 + 大面积安静暗部”，用于确认信息密度偏好",
+      "params": "--ar 16:9 --style raw --stylize 140 --chaos 6",
+      "images": [
+        {
+          "id": "mji_d14b4654-198a-4394-86d3-2695bbc5f5c1_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_d14b4654-198a-4394-86d3-2695bbc5f5c1_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_d14b4654-198a-4394-86d3-2695bbc5f5c1_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_d14b4654-198a-4394-86d3-2695bbc5f5c1_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "after": {
+      "groupId": "mjg_a3f0d1b5-31d2-426a-a8ee-08aea8b4648d",
+      "prompt": "A quiet archive reading room, one illuminated manuscript on a long dark table, most shelves falling into soft shadow, controlled detail, one clear focal point, restrained cinematic realism",
+      "translation": "把“处处都有细节”改为“单一焦点 + 大面积安静暗部”，用于确认信息密度偏好",
+      "params": "--ar 16:9 --style raw --stylize 140 --chaos 6",
+      "images": [
+        {
+          "id": "mji_a3f0d1b5-31d2-426a-a8ee-08aea8b4648d_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_a3f0d1b5-31d2-426a-a8ee-08aea8b4648d_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_a3f0d1b5-31d2-426a-a8ee-08aea8b4648d_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_a3f0d1b5-31d2-426a-a8ee-08aea8b4648d_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "improved": "明显改善",
+    "conclusion": "单一手稿成为稳定焦点，暗部与留白显著增加，阅读顺序更清楚。",
+    "retryGroupIds": [],
+    "syncState": "verified"
+  },
+  {
+    "type": "comparison",
+    "experimentId": "mje_02_excessive_gold",
+    "title": "金色过量",
+    "reasonCategory": "色彩",
+    "dislike": "俗艳、缺少层次",
+    "correction": "金色占比低于一成，改用哑光黑石",
+    "avoid": "all gold, shiny gold, brilliant golden glow",
+    "before": {
+      "groupId": "mjg_49ca24b9-1322-4eb4-8f7d-8ba1908518ff",
+      "prompt": "A luxurious golden palace, everything covered in shiny gold, ornate baroque details, brilliant warm glow",
+      "translation": "把满屏亮金改为低饱和金色点缀，用材质与尺度体现贵气",
+      "params": "--ar 16:9 --stylize 180 --chaos 5",
+      "images": [
+        {
+          "id": "mji_49ca24b9-1322-4eb4-8f7d-8ba1908518ff_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_49ca24b9-1322-4eb4-8f7d-8ba1908518ff_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_49ca24b9-1322-4eb4-8f7d-8ba1908518ff_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_49ca24b9-1322-4eb4-8f7d-8ba1908518ff_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "after": {
+      "groupId": "mjg_111f1bf0-5289-40dc-ab9f-85d5061f987a",
+      "prompt": "A dark stone ceremonial hall with one thin muted-gold inlay and a single warm candle reflection, matte surfaces, vast negative space, restrained luxury",
+      "translation": "把满屏亮金改为低饱和金色点缀，用材质与尺度体现贵气",
+      "params": "--ar 16:9 --stylize 180 --chaos 5",
+      "images": [
+        {
+          "id": "mji_111f1bf0-5289-40dc-ab9f-85d5061f987a_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_111f1bf0-5289-40dc-ab9f-85d5061f987a_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_111f1bf0-5289-40dc-ab9f-85d5061f987a_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_111f1bf0-5289-40dc-ab9f-85d5061f987a_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "improved": "明显改善",
+    "conclusion": "金色从满屏装饰变为低占比光线与反射，材质和空间尺度承担了奢华感。",
+    "retryGroupIds": [],
+    "syncState": "verified"
+  },
+  {
+    "type": "comparison",
+    "experimentId": "mje_03_muddy_color",
+    "title": "颜色浑浊",
+    "reasonCategory": "色彩",
+    "dislike": "综合色发脏",
+    "correction": "限制为深蓝、珍珠灰、低饱和琥珀",
+    "avoid": "teal-orange overload, multicolor lighting, rich colors",
+    "before": {
+      "groupId": "mjg_0e1f7461-8942-489f-94a7-44810cab5467",
+      "prompt": "A moody cinematic interior with teal orange purple red and green lighting, heavy atmosphere, rich colors",
+      "translation": "把多组互抢的影视色改为“主色 + 单一暖色强调”，保持色彩分离",
+      "params": "--ar 16:9 --style raw --stylize 120 --chaos 4",
+      "images": [
+        {
+          "id": "mji_0e1f7461-8942-489f-94a7-44810cab5467_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_0e1f7461-8942-489f-94a7-44810cab5467_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_0e1f7461-8942-489f-94a7-44810cab5467_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_0e1f7461-8942-489f-94a7-44810cab5467_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": [
+        {
+          "groupId": "mjg_4539e387-b28a-40cd-9c2b-d04fb49f4862",
+          "prompt": "A moody cinematic interior with teal orange purple red and green lighting, heavy atmosphere, rich colors",
+          "translation": "把多组互抢的影视色改为“主色 + 单一暖色强调”，保持色彩分离",
+          "params": "--ar 16:9 --style raw --stylize 120 --chaos 4",
+          "images": [
+            {
+              "id": "mji_4539e387-b28a-40cd-9c2b-d04fb49f4862_01",
+              "src": null,
+              "available": false
+            },
+            {
+              "id": "mji_4539e387-b28a-40cd-9c2b-d04fb49f4862_02",
+              "src": null,
+              "available": false
+            },
+            {
+              "id": "mji_4539e387-b28a-40cd-9c2b-d04fb49f4862_03",
+              "src": null,
+              "available": false
+            },
+            {
+              "id": "mji_4539e387-b28a-40cd-9c2b-d04fb49f4862_04",
+              "src": null,
+              "available": false
+            }
+          ]
+        }
+      ]
+    },
+    "after": {
+      "groupId": "mjg_a56386b4-cbbe-4e90-b48b-56e22cdc183d",
+      "prompt": "A pearl-gray interior with deep navy shadows and one muted amber practical light, clean color separation, neutral skinless scene, subtle film grain",
+      "translation": "把多组互抢的影视色改为“主色 + 单一暖色强调”，保持色彩分离",
+      "params": "--ar 16:9 --style raw --stylize 120 --chaos 4",
+      "images": [
+        {
+          "id": "mji_a56386b4-cbbe-4e90-b48b-56e22cdc183d_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_a56386b4-cbbe-4e90-b48b-56e22cdc183d_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_a56386b4-cbbe-4e90-b48b-56e22cdc183d_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_a56386b4-cbbe-4e90-b48b-56e22cdc183d_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": [
+        {
+          "groupId": "mjg_f461db1d-a675-4f63-b085-4853d91c49cf",
+          "prompt": "A pearl-gray interior with deep navy shadows and one muted amber practical light, clean color separation, neutral skinless scene, subtle film grain",
+          "translation": "把多组互抢的影视色改为“主色 + 单一暖色强调”，保持色彩分离",
+          "params": "--ar 16:9 --style raw --stylize 120 --chaos 4",
+          "images": [
+            {
+              "id": "mji_f461db1d-a675-4f63-b085-4853d91c49cf_01",
+              "src": null,
+              "available": false
+            },
+            {
+              "id": "mji_f461db1d-a675-4f63-b085-4853d91c49cf_02",
+              "src": null,
+              "available": false
+            },
+            {
+              "id": "mji_f461db1d-a675-4f63-b085-4853d91c49cf_03",
+              "src": null,
+              "available": false
+            },
+            {
+              "id": "mji_f461db1d-a675-4f63-b085-4853d91c49cf_04",
+              "src": null,
+              "available": false
+            }
+          ]
+        }
+      ]
+    },
+    "improved": "部分改善",
+    "conclusion": "主色与暖色强调更干净，但修改版意外生成人物，下一轮应增加 --no people 以消除主体变量。",
+    "retryGroupIds": [
+      "mjg_4539e387-b28a-40cd-9c2b-d04fb49f4862",
+      "mjg_f461db1d-a675-4f63-b085-4853d91c49cf"
+    ],
+    "syncState": "verified"
+  },
+  {
+    "type": "comparison",
+    "experimentId": "mje_04_unclear_subject",
+    "title": "主体不明确",
+    "reasonCategory": "没有主体",
+    "dislike": "第一眼不知道看哪里",
+    "correction": "用颜色、尺度与清晰度锁定一个主体",
+    "avoid": "full of, many buildings, crowds, panoramic spectacle",
+    "before": {
+      "groupId": "mjg_4267794b-e8e4-4205-a41c-2a99d26ec4cd",
+      "prompt": "A dreamy surreal city full of floating buildings, clouds, birds, bridges, lights and crowds, wide panoramic view",
+      "translation": "从泛泛“奇幻城市”改成可一眼识别的唯一主体，其他元素退为轮廓",
+      "params": "--ar 21:9 --stylize 190 --chaos 8 --no crowds",
+      "images": [
+        {
+          "id": "mji_4267794b-e8e4-4205-a41c-2a99d26ec4cd_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_4267794b-e8e4-4205-a41c-2a99d26ec4cd_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_4267794b-e8e4-4205-a41c-2a99d26ec4cd_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_4267794b-e8e4-4205-a41c-2a99d26ec4cd_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "after": {
+      "groupId": "mjg_342ad345-4159-4170-adf9-3fec4570d97d",
+      "prompt": "A vast foggy city with one suspended red footbridge as the unmistakable focal subject, distant architecture reduced to pale silhouettes, no crowds",
+      "translation": "从泛泛“奇幻城市”改成可一眼识别的唯一主体，其他元素退为轮廓",
+      "params": "--ar 21:9 --stylize 190 --chaos 8 --no crowds",
+      "images": [
+        {
+          "id": "mji_342ad345-4159-4170-adf9-3fec4570d97d_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_342ad345-4159-4170-adf9-3fec4570d97d_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_342ad345-4159-4170-adf9-3fec4570d97d_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_342ad345-4159-4170-adf9-3fec4570d97d_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "improved": "明显改善",
+    "conclusion": "红色步桥在雾中形成唯一视觉锚点，远景被压成轮廓，主体识别速度明显提升。",
+    "retryGroupIds": [],
+    "syncState": "verified"
+  },
+  {
+    "type": "comparison",
+    "experimentId": "mje_05_overdramatic_light",
+    "title": "光线太戏剧化",
+    "reasonCategory": "光线",
+    "dislike": "情绪被光效替代",
+    "correction": "柔和漫射、保留暗部细节",
+    "avoid": "god rays, epic rim light, dramatic spotlight",
+    "before": {
+      "groupId": "mjg_4b2e03e3-1f1a-43c2-8810-b15ca2d60957",
+      "prompt": "An epic portrait under intense god rays, hard rim light, dramatic spotlight, glowing fog, cinematic blockbuster mood",
+      "translation": "把神光、轮廓光和强聚光改为阴天窗光，测试低对比安静人物情绪",
+      "params": "--ar 4:5 --style raw --stylize 90 --chaos 5 --no god rays",
+      "images": [
+        {
+          "id": "mji_4b2e03e3-1f1a-43c2-8810-b15ca2d60957_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_4b2e03e3-1f1a-43c2-8810-b15ca2d60957_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_4b2e03e3-1f1a-43c2-8810-b15ca2d60957_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_4b2e03e3-1f1a-43c2-8810-b15ca2d60957_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "after": {
+      "groupId": "mjg_8b190cfc-795a-4300-9eff-935a55febe82",
+      "prompt": "A solitary figure seen from behind in soft overcast window light, low contrast, readable shadow detail, quiet documentary still, no visible face",
+      "translation": "把神光、轮廓光和强聚光改为阴天窗光，测试低对比安静人物情绪",
+      "params": "--ar 4:5 --style raw --stylize 90 --chaos 5 --no god rays",
+      "images": [
+        {
+          "id": "mji_8b190cfc-795a-4300-9eff-935a55febe82_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_8b190cfc-795a-4300-9eff-935a55febe82_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_8b190cfc-795a-4300-9eff-935a55febe82_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_8b190cfc-795a-4300-9eff-935a55febe82_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "improved": "明显改善",
+    "conclusion": "修改版的窗光与暗部细节可读，人物情绪由姿态和空间关系承担，光效不再抢叙事。",
+    "retryGroupIds": [],
+    "syncState": "verified"
+  },
+  {
+    "type": "comparison",
+    "experimentId": "mje_06_plastic_material",
+    "title": "材质像塑料",
+    "reasonCategory": "材质",
+    "dislike": "廉价 3D 感",
+    "correction": "指定真实材质与微磨损",
+    "avoid": "glossy plastic, perfect reflection, ultra-clean render",
+    "before": {
+      "groupId": "mjg_90d49c24-2ba0-4ca6-94da-89436f9def18",
+      "prompt": "A futuristic translucent device, glossy smooth surfaces, perfect reflections, neon highlights, ultra-clean 3D render",
+      "translation": "把“完美光滑 3D”改为磨砂玻璃、金属与微小使用痕迹，增加可信度",
+      "params": "--ar 4:5 --style raw --stylize 80 --chaos 3 --no glossy plastic, neon",
+      "images": [
+        {
+          "id": "mji_90d49c24-2ba0-4ca6-94da-89436f9def18_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_90d49c24-2ba0-4ca6-94da-89436f9def18_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_90d49c24-2ba0-4ca6-94da-89436f9def18_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_90d49c24-2ba0-4ca6-94da-89436f9def18_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "after": {
+      "groupId": "mjg_88014949-6bdb-465f-8a5b-ce99e725403a",
+      "prompt": "A plausible translucent device made from frosted glass and anodized aluminum, micro-scratches, soft fingerprints, diffused studio light, documentary product photography",
+      "translation": "把“完美光滑 3D”改为磨砂玻璃、金属与微小使用痕迹，增加可信度",
+      "params": "--ar 4:5 --style raw --stylize 80 --chaos 3 --no glossy plastic, neon",
+      "images": [
+        {
+          "id": "mji_88014949-6bdb-465f-8a5b-ce99e725403a_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_88014949-6bdb-465f-8a5b-ce99e725403a_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_88014949-6bdb-465f-8a5b-ce99e725403a_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_88014949-6bdb-465f-8a5b-ce99e725403a_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "improved": "部分改善",
+    "conclusion": "修改版明显减少霓虹与廉价塑料感，光线和表面更克制；但部分样本仍像抽象 3D 产品渲染，真实微磨损和使用痕迹不稳定。",
+    "retryGroupIds": [],
+    "syncState": "verified"
+  },
+  {
+    "type": "comparison",
+    "experimentId": "mje_07_ai_fantasy_cliche",
+    "title": "AI 奇幻套话",
+    "reasonCategory": "过度风格化",
+    "dislike": "通用、没有个人性",
+    "correction": "补充人物身份、用途明确的道具和真实天气",
+    "avoid": "ethereal goddess, enchanted, magical particles, masterpiece",
+    "before": {
+      "groupId": "mjg_b2f64a14-3cb7-412f-95f1-295b7b964334",
+      "prompt": "An ethereal fantasy goddess in an enchanted forest, glowing butterflies, flowing dress, magical particles, hyper-detailed masterpiece",
+      "translation": "把“女神 + 魔法粒子”的通用套路改成有职业、物件和天气线索的具体人物场景",
+      "params": "--ar 3:4 --style raw --stylize 100 --chaos 7 --no glowing particles, fantasy dress",
+      "images": [
+        {
+          "id": "mji_b2f64a14-3cb7-412f-95f1-295b7b964334_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_b2f64a14-3cb7-412f-95f1-295b7b964334_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_b2f64a14-3cb7-412f-95f1-295b7b964334_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_b2f64a14-3cb7-412f-95f1-295b7b964334_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "after": {
+      "groupId": "mjg_97649a8c-492c-4f38-a836-74eea58c2319",
+      "prompt": "A weathered field botanist resting beneath an old cedar after rain, practical linen coat, specimen case at her side, gray natural light, restrained documentary realism",
+      "translation": "把“女神 + 魔法粒子”的通用套路改成有职业、物件和天气线索的具体人物场景",
+      "params": "--ar 3:4 --style raw --stylize 100 --chaos 7 --no glowing particles, fantasy dress",
+      "images": [
+        {
+          "id": "mji_97649a8c-492c-4f38-a836-74eea58c2319_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_97649a8c-492c-4f38-a836-74eea58c2319_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_97649a8c-492c-4f38-a836-74eea58c2319_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_97649a8c-492c-4f38-a836-74eea58c2319_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "improved": "明显改善",
+    "conclusion": "修改版用野外植物学家、标本箱和雨后雪松建立了具体人物线索，明显减弱女神、粒子和发光森林的通用 AI 套话。",
+    "retryGroupIds": [],
+    "syncState": "verified"
+  },
+  {
+    "type": "comparison",
+    "experimentId": "mje_08_overcentered_composition",
+    "title": "构图过度居中",
+    "reasonCategory": "构图",
+    "dislike": "像模板、太静态",
+    "correction": "三分法、边缘裁切、对角平衡",
+    "avoid": "perfect symmetry, centered everything, balanced composition",
+    "before": {
+      "groupId": "mjg_50ffd9a8-b791-445a-8374-462ddf6d0fff",
+      "prompt": "A perfectly symmetrical room with a centered chair, centered window, centered lamp, balanced composition",
+      "translation": "把全部元素居中对称改为对角线张力与三分法，确认是否更有呼吸和叙事感",
+      "params": "--ar 4:5 --style raw --stylize 110 --chaos 5",
+      "images": [
+        {
+          "id": "mji_50ffd9a8-b791-445a-8374-462ddf6d0fff_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_50ffd9a8-b791-445a-8374-462ddf6d0fff_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_50ffd9a8-b791-445a-8374-462ddf6d0fff_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_50ffd9a8-b791-445a-8374-462ddf6d0fff_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "after": {
+      "groupId": "mjg_e2daccf2-fcbc-4479-8284-c973a4634601",
+      "prompt": "A sparse room with a lone chair on the lower-left third, an open window cropped at the upper-right edge, diagonal afternoon shadow, deliberate imbalance and generous negative space",
+      "translation": "把全部元素居中对称改为对角线张力与三分法，确认是否更有呼吸和叙事感",
+      "params": "--ar 4:5 --style raw --stylize 110 --chaos 5",
+      "images": [
+        {
+          "id": "mji_e2daccf2-fcbc-4479-8284-c973a4634601_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_e2daccf2-fcbc-4479-8284-c973a4634601_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_e2daccf2-fcbc-4479-8284-c973a4634601_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_e2daccf2-fcbc-4479-8284-c973a4634601_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "improved": "明显改善",
+    "conclusion": "修改版用边缘裁切、斜向光影和偏置座椅打破对称，留白与画面张力都更清楚。",
+    "retryGroupIds": [],
+    "syncState": "verified"
+  },
+  {
+    "type": "comparison",
+    "experimentId": "mje_09_overdecorated_perfume",
+    "title": "装饰太多",
+    "reasonCategory": "场景",
+    "dislike": "物件堆砌、俗套",
+    "correction": "限制道具数量，用质地与光线表达价值",
+    "avoid": "crystals, pearls, glitter, ornate luxury",
+    "before": {
+      "groupId": "mjg_682618ba-58f6-4a5a-913d-22e53ea36cec",
+      "prompt": "A luxury perfume campaign with crystals, flowers, silk, pearls, gold ornaments and sparkling dust around the bottle",
+      "translation": "把水晶、珍珠、丝绸等堆叠装饰删到只剩一花一布，以触感代替“豪华符号”",
+      "params": "--ar 4:5 --style raw --stylize 130 --chaos 6 --no crystals, pearls, glitter",
+      "images": [
+        {
+          "id": "mji_682618ba-58f6-4a5a-913d-22e53ea36cec_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_682618ba-58f6-4a5a-913d-22e53ea36cec_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_682618ba-58f6-4a5a-913d-22e53ea36cec_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_682618ba-58f6-4a5a-913d-22e53ea36cec_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": [
+        {
+          "groupId": "mjg_31ca0626-d45c-4c60-aa95-93e4c1027417",
+          "prompt": "A luxury perfume campaign with crystals, flowers, silk, pearls, gold ornaments and sparkling dust around the bottle",
+          "translation": "把水晶、珍珠、丝绸等堆叠装饰删到只剩一花一布，以触感代替“豪华符号”",
+          "params": "--ar 4:5 --style raw --stylize 130 --chaos 6 --no crystals, pearls, glitter",
+          "images": [
+            {
+              "id": "mji_31ca0626-d45c-4c60-aa95-93e4c1027417_01",
+              "src": null,
+              "available": false
+            },
+            {
+              "id": "mji_31ca0626-d45c-4c60-aa95-93e4c1027417_02",
+              "src": null,
+              "available": false
+            },
+            {
+              "id": "mji_31ca0626-d45c-4c60-aa95-93e4c1027417_03",
+              "src": null,
+              "available": false
+            },
+            {
+              "id": "mji_31ca0626-d45c-4c60-aa95-93e4c1027417_04",
+              "src": null,
+              "available": false
+            }
+          ]
+        }
+      ]
+    },
+    "after": {
+      "groupId": "mjg_adc434fb-d500-403a-8b4f-814a62a4ce93",
+      "prompt": "A single dark-glass perfume bottle on folded raw linen, one bruised iris beside it, cool side light, deep charcoal background, restrained tactile still life",
+      "translation": "把水晶、珍珠、丝绸等堆叠装饰删到只剩一花一布，以触感代替“豪华符号”",
+      "params": "--ar 4:5 --style raw --stylize 130 --chaos 6 --no crystals, pearls, glitter",
+      "images": [
+        {
+          "id": "mji_adc434fb-d500-403a-8b4f-814a62a4ce93_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_adc434fb-d500-403a-8b4f-814a62a4ce93_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_adc434fb-d500-403a-8b4f-814a62a4ce93_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_adc434fb-d500-403a-8b4f-814a62a4ce93_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "improved": "明显改善",
+    "conclusion": "修改版减少水晶、珍珠与闪粉堆叠，暗色瓶身、粗亚麻和冷侧光形成更克制的触感表达。",
+    "retryGroupIds": [
+      "mjg_31ca0626-d45c-4c60-aa95-93e4c1027417"
+    ],
+    "syncState": "verified"
+  },
+  {
+    "type": "comparison",
+    "experimentId": "mje_10_text_generation_interference",
+    "title": "文字生成干扰",
+    "reasonCategory": "排版",
+    "dislike": "乱码破坏画面",
+    "correction": "用抽象文字块占位，文字后期排版",
+    "avoid": "exact headline, readable cover lines",
+    "before": {
+      "groupId": "mjg_698c27af-16c2-4857-9852-28a23214e646",
+      "prompt": "A magazine cover with the exact headline FUTURE MEMORY and many readable cover lines, fashion editorial photograph",
+      "translation": "避免要求模型准确拼写，先研究版式；后续在设计软件中加入真实文字",
+      "params": "--ar 3:4 --style raw --stylize 90 --chaos 4 --no readable text, logo, watermark",
+      "images": [
+        {
+          "id": "mji_698c27af-16c2-4857-9852-28a23214e646_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_698c27af-16c2-4857-9852-28a23214e646_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_698c27af-16c2-4857-9852-28a23214e646_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_698c27af-16c2-4857-9852-28a23214e646_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "after": {
+      "groupId": "mjg_7d8d07d3-7a3f-4b55-93d6-0009d9fdc223",
+      "prompt": "A contemporary magazine cover layout using abstract typographic blocks and neutral glyph-like shapes, one fashion portrait, clear hierarchy, no readable words or logos",
+      "translation": "避免要求模型准确拼写，先研究版式；后续在设计软件中加入真实文字",
+      "params": "--ar 3:4 --style raw --stylize 90 --chaos 4 --no readable text, logo, watermark",
+      "images": [
+        {
+          "id": "mji_7d8d07d3-7a3f-4b55-93d6-0009d9fdc223_01",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_7d8d07d3-7a3f-4b55-93d6-0009d9fdc223_02",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_7d8d07d3-7a3f-4b55-93d6-0009d9fdc223_03",
+          "src": null,
+          "available": false
+        },
+        {
+          "id": "mji_7d8d07d3-7a3f-4b55-93d6-0009d9fdc223_04",
+          "src": null,
+          "available": false
+        }
+      ],
+      "alternates": []
+    },
+    "improved": "部分改善",
+    "conclusion": "修改版避免了强求准确拼写造成的乱码，并保留封面层级；但抽象字块仍不稳定，真实标题仍需在设计软件中后期排版。",
+    "retryGroupIds": [],
+    "syncState": "verified"
+  }
+]

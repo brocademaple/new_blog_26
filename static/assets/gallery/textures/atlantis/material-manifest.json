@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "generator": "scripts/generate_atlantis_textures.py",
+  "materials": [
+    {
+      "id": "weathered-stone",
+      "size": 1024,
+      "channels": [
+        "baseColor",
+        "normal",
+        "roughness",
+        "ao"
+      ]
+    },
+    {
+      "id": "oxidized-bronze",
+      "size": 1024,
+      "channels": [
+        "baseColor",
+        "normal",
+        "roughness",
+        "metalness"
+      ]
+    },
+    {
+      "id": "silt-mosaic-floor",
+      "size": 2048,
+      "channels": [
+        "baseColor",
+        "normal",
+        "roughness",
+        "ao"
+      ]
+    }
+  ],
+  "decals": {
+    "id": "ruin-decal-atlas",
+    "size": 1024,
+    "quadrants": [
+      "cracks",
+      "algae",
+      "barnacles",
+      "silt"
+    ]
+  }
+}

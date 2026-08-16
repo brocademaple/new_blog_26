@@ -1,0 +1,142 @@
+{
+  "version": 2,
+  "clusters": [
+    {
+      "id": "material-broken-sun",
+      "room": "material",
+      "title": "Broken Sun",
+      "subtitle": "A material study in four fragments",
+      "center": [
+        -0.35,
+        2.74
+      ],
+      "radius": 1.62,
+      "tiles": [
+        {
+          "artworkId": "04-texture-material-black-leather-handbag-01",
+          "shape": "hero",
+          "x": -0.72,
+          "y": 0.12,
+          "scale": 1.0,
+          "rotation": -0.08
+        },
+        {
+          "artworkId": "04-texture-material-brushed-metal-watch-01",
+          "shape": "triangle",
+          "x": 0.72,
+          "y": 0.72,
+          "scale": 0.82,
+          "rotation": 0.2
+        },
+        {
+          "artworkId": "04-texture-material-cobalt-ceramic-bowl-01",
+          "shape": "trapezoid",
+          "x": 0.92,
+          "y": -0.52,
+          "scale": 0.76,
+          "rotation": -0.16
+        },
+        {
+          "artworkId": "04-texture-material-embroidered-silk-pouch-01",
+          "shape": "arc",
+          "x": -0.02,
+          "y": -0.78,
+          "scale": 0.72,
+          "rotation": 0.1
+        }
+      ]
+    }
+  ],
+  "rooms": {
+    "color": {
+      "hero": {
+        "index": 0,
+        "wall": "back",
+        "x": 0,
+        "y": 2.8,
+        "scale": 1.5
+      },
+      "artworks": [
+        {"index": 1, "wall": "back", "x": -2.2, "y": 4.2, "scale": 0.85},
+        {"index": 2, "wall": "back", "x": 2.1, "y": 4.15, "scale": 0.88},
+        {"index": 3, "wall": "left", "z": -2.0, "y": 3.4, "scale": 0.92},
+        {"index": 4, "wall": "left", "z": 0.8, "y": 2.2, "scale": 1.05},
+        {"index": 5, "wall": "right", "z": -1.8, "y": 3.5, "scale": 0.9},
+        {"index": 6, "wall": "right", "z": 1.2, "y": 2.35, "scale": 0.95},
+        {"index": 7, "wall": "right", "z": -0.2, "y": 4.5, "scale": 0.72}
+      ]
+    },
+    "composition": {
+      "hero": {
+        "index": 0,
+        "wall": "back",
+        "x": 0.2,
+        "y": 2.5,
+        "scale": 1.4
+      },
+      "artworks": [
+        {"index": 1, "wall": "back", "x": -2.0, "y": 4.0, "scale": 0.88},
+        {"index": 2, "wall": "left", "z": -1.8, "y": 3.2, "scale": 1.0},
+        {"index": 3, "wall": "left", "z": 0.6, "y": 2.1, "scale": 0.92},
+        {"index": 4, "wall": "left", "z": 2.2, "y": 3.8, "scale": 0.85},
+        {"index": 5, "wall": "right", "z": -1.5, "y": 2.3, "scale": 0.95},
+        {"index": 6, "wall": "right", "z": 1.0, "y": 3.6, "scale": 0.9},
+        {"index": 7, "wall": "right", "z": -0.2, "y": 4.4, "scale": 0.75}
+      ]
+    },
+    "lighting": {
+      "hero": {
+        "index": 0,
+        "wall": "back",
+        "x": -0.3,
+        "y": 3.0,
+        "scale": 1.45
+      },
+      "artworks": [
+        {"index": 1, "wall": "back", "x": 2.2, "y": 4.3, "scale": 0.82},
+        {"index": 2, "wall": "back", "x": -2.5, "y": 4.5, "scale": 0.78},
+        {"index": 3, "wall": "left", "z": -2.2, "y": 3.6, "scale": 0.95},
+        {"index": 4, "wall": "left", "z": 0.3, "y": 2.15, "scale": 1.08},
+        {"index": 5, "wall": "left", "z": 2.0, "y": 3.9, "scale": 0.88},
+        {"index": 6, "wall": "right", "z": -1.9, "y": 3.45, "scale": 0.92},
+        {"index": 7, "wall": "right", "z": 1.5, "y": 2.25, "scale": 1.0}
+      ]
+    },
+    "mood": {
+      "hero": {
+        "index": 0,
+        "wall": "back",
+        "x": 0,
+        "y": 2.65,
+        "scale": 1.5
+      },
+      "artworks": [
+        {"index": 1, "wall": "back", "x": -2.3, "y": 4.25, "scale": 0.85},
+        {"index": 2, "wall": "back", "x": 2.4, "y": 4.4, "scale": 0.8},
+        {"index": 3, "wall": "left", "z": -2.1, "y": 3.3, "scale": 0.98},
+        {"index": 4, "wall": "left", "z": 0.5, "y": 2.0, "scale": 1.05},
+        {"index": 5, "wall": "left", "z": 2.3, "y": 3.75, "scale": 0.9},
+        {"index": 6, "wall": "right", "z": -1.7, "y": 2.2, "scale": 1.02},
+        {"index": 7, "wall": "right", "z": 1.8, "y": 3.55, "scale": 0.88}
+      ]
+    },
+    "scene": {
+      "hero": {
+        "index": 0,
+        "wall": "back",
+        "x": 0.1,
+        "y": 2.75,
+        "scale": 1.42
+      },
+      "artworks": [
+        {"index": 1, "wall": "back", "x": -2.1, "y": 4.15, "scale": 0.86},
+        {"index": 2, "wall": "back", "x": 2.2, "y": 4.35, "scale": 0.83},
+        {"index": 3, "wall": "left", "z": -1.9, "y": 3.45, "scale": 0.94},
+        {"index": 4, "wall": "left", "z": 0.7, "y": 2.15, "scale": 1.0},
+        {"index": 5, "wall": "left", "z": 2.1, "y": 3.85, "scale": 0.89},
+        {"index": 6, "wall": "right", "z": -1.6, "y": 2.35, "scale": 0.96},
+        {"index": 7, "wall": "right", "z": 1.6, "y": 3.65, "scale": 0.91}
+      ]
+    }
+  }
+}
