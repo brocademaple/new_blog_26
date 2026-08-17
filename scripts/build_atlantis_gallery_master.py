@@ -12,6 +12,7 @@ runtime continues to load the six small GLB modules independently.
 from __future__ import annotations
 
 import argparse
+import json
 import math
 import os
 import random
@@ -41,6 +42,9 @@ ASSET_OBJECT_FILTERS = {
     "palace": (("Palace",), {"Sunken_Palace"}),
 }
 
+GALLERY_ROOM_ORDER = ("color", "composition", "lighting", "material", "mood", "scene")
+FOCAL_ARTWORK_ID = "01-color-palette-mysterious-portrait-deep-purple-emerald-gold-01"
+
 
 def args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
@@ -52,6 +56,61 @@ def args() -> argparse.Namespace:
     )
     argv = os.sys.argv
     return parser.parse_args(argv[argv.index("--") + 1 :] if "--" in argv else [])
+
+
+def select_spatial_exhibition_artworks(repo: Path) -> dict[str, list[Path]]:
+    """Select the 13 web-exhibition works from Gallery data, not filenames.
+
+    The previous master sliced a globally sorted thumbnail directory. Because
+    the directory begins with ``01_color_palette``, every wall accidentally
+    received a Color work. The spatial exhibition now has an explicit rule:
+    one Highlight and one Exhibition work from each of the six themes, plus
+    the retained palace focal portrait.
+    """
+    data_path = repo / "static/assets/gallery/gallery-data.json"
+    records = json.loads(data_path.read_text(encoding="utf-8"))
+    published = [record for record in records if record.get("published") is not False]
+    by_id = {record.get("id"): record for record in published}
+    focal = by_id.get(FOCAL_ARTWORK_ID)
+    if focal is None:
+        raise RuntimeError(f"Missing focal Gallery record: {FOCAL_ARTWORK_ID}")
+
+    def record_path(record: dict) -> Path:
+        path = repo / "static" / str(record["thumb"]).lstrip("/")
+        if not path.is_file():
+            raise RuntimeError(f"Missing Gallery thumbnail: {path}")
+        return path
+
+    def ordered(records_for_room: list[dict]) -> list[dict]:
+        return sorted(records_for_room, key=lambda item: (item.get("order", 10**9), item.get("id", "")))
+
+    highlights: list[Path] = []
+    exhibitions: list[Path] = []
+    for room_id in GALLERY_ROOM_ORDER:
+        room_records = [record for record in published if record.get("room") == room_id]
+        room_highlights = ordered(
+            [record for record in room_records if record.get("status") == "highlight" or record.get("highlight")]
+        )
+        room_exhibitions = ordered(
+            [
+                record
+                for record in room_records
+                if record.get("status") == "exhibition" and record.get("id") != FOCAL_ARTWORK_ID
+            ]
+        )
+        if not room_highlights or not room_exhibitions:
+            raise RuntimeError(f"Gallery theme {room_id} lacks a Highlight or Exhibition record")
+        highlights.append(record_path(room_highlights[0]))
+        exhibitions.append(record_path(room_exhibitions[0]))
+
+    selected = highlights + exhibitions + [record_path(focal)]
+    if len({path.resolve() for path in selected}) != 13:
+        raise RuntimeError("Spatial exhibition selection must contain 13 unique artworks")
+    return {
+        "archive": highlights[:3],
+        "cliff": highlights[3:],
+        "palace": exhibitions + [record_path(focal)],
+    }
 
 
 def clear_scene() -> None:
@@ -3292,6 +3351,41 @@ def point_at(obj: bpy.types.Object, target: tuple[float, float, float]):
     obj.rotation_euler = direction.to_track_quat("-Z", "Y").to_euler()
 
 
+def add_gallery_navigation_marker(
+    name: str,
+    nav_id: str,
+    label: str,
+    title: str,
+    order: int,
+    source_camera: bpy.types.Object,
+    target: tuple[float, float, float],
+) -> bpy.types.Object:
+    """Export an authored camera position and target as two glTF nodes.
+
+    A Blender camera and a plain Empty use different forward-axis handling in
+    glTF. Exporting only a copied camera rotation tilted the web view. Pairing
+    two positions lets Three.js calculate the exact look direction itself.
+    """
+    marker = bpy.data.objects.new(name, None)
+    marker.empty_display_type = "ARROWS"
+    marker.empty_display_size = 0.72
+    marker.matrix_world = source_camera.matrix_world.copy()
+    marker["gallery_nav_id"] = nav_id
+    marker["gallery_nav_label"] = label
+    marker["gallery_nav_title"] = title
+    marker["gallery_nav_order"] = order
+    marker["gallery_nav_fov"] = round(math.degrees(2 * math.atan(source_camera.data.sensor_width / (2 * source_camera.data.lens))), 3)
+    marker["gallery_nav_source_camera"] = source_camera.name
+    bpy.context.scene.collection.objects.link(marker)
+    target_marker = bpy.data.objects.new(name + "_Target", None)
+    target_marker.empty_display_type = "PLAIN_AXES"
+    target_marker.empty_display_size = 0.48
+    target_marker.location = target
+    target_marker["gallery_nav_target_for"] = nav_id
+    bpy.context.scene.collection.objects.link(target_marker)
+    return marker
+
+
 def bind_review_timeline(scene: bpy.types.Scene, camera_specs) -> None:
     """Bind the spatial-review cameras to timeline markers for fast inspection."""
     for marker in list(scene.timeline_markers):
@@ -3566,12 +3660,12 @@ def build(repo: Path):
     # relief monuments read as floating black rectangles from oblique views;
     # all framed artwork now belongs inside the three museum buildings.
     # Two complete side museums replace the former floating vault canopies.
-    all_art_paths = sorted((repo / "static" / "assets" / "gallery" / "thumbs").glob("**/*.jpg"))
+    spatial_artworks = select_spatial_exhibition_artworks(repo)
     add_side_gallery_shell(
         "ArchiveOfTides",
         (-11.5, -29.0),
         library,
-        all_art_paths[8:11],
+        spatial_artworks["archive"],
         stone,
         stone_dark,
         floor_mat,
@@ -3584,7 +3678,7 @@ def build(repo: Path):
         "CliffGallery",
         (11.5, -29.0),
         library,
-        all_art_paths[11:14],
+        spatial_artworks["cliff"],
         stone,
         stone_dark,
         floor_mat,
@@ -3627,17 +3721,21 @@ def build(repo: Path):
     add_palace_rear_extension_v3(stone, stone_dark, floor_mat, palace_glow)
     add_palace_nave_shell_v3(stone, stone_dark, floor_mat, palace_glow)
     add_palace_upper_circulation_v1(stone, stone_dark, floor_mat)
-    palace_art_paths = all_art_paths[14:21]
-    if len(palace_art_paths) < 7:
-        palace_art_paths = (all_art_paths * 2)[:7]
     add_palace_interior_v3(
         repo,
-        palace_art_paths,
+        spatial_artworks["palace"],
         stone,
         stone_dark,
         floor_mat,
         palace_glow,
         memory_glass,
+    )
+    scene["gallery_spatial_artworks"] = json.dumps(
+        {
+            space: ["/" + path.as_posix().split("/static/", 1)[1] for path in paths]
+            for space, paths in spatial_artworks.items()
+        },
+        ensure_ascii=False,
     )
     validate_palace_core_envelope()
 
@@ -3950,6 +4048,38 @@ def build(repo: Path):
     shaft_camera.data.lens = 32
     shaft_camera.data.sensor_width = 36
     point_at(shaft_camera, (-17.2, -16.0, 5.0))
+
+    # These empties are exported with their owning GLB modules. Three.js reads
+    # their transforms and extras directly, so web navigation cannot drift
+    # away from the Blender architecture when the model changes again.
+    add_gallery_navigation_marker(
+        "ArchiveOfTides_NavigationMarker",
+        "archive-of-tides",
+        "Archive",
+        "Archive of Tides",
+        10,
+        archive_camera,
+        (-11.5, -29.0, 2.95),
+    )
+    add_gallery_navigation_marker(
+        "CliffGallery_NavigationMarker",
+        "cliff-gallery",
+        "Cliff",
+        "Cliff Gallery",
+        20,
+        cliff_camera,
+        (11.5, -29.0, 2.95),
+    )
+    add_gallery_navigation_marker(
+        "PalaceNavigationMarker",
+        "sunken-palace",
+        "Palace",
+        "Sunken Palace",
+        30,
+        palace_walk_camera,
+        (0.0, -63.10, 3.70),
+    )
+
     bind_review_timeline(
         scene,
         (

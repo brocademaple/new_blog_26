@@ -103,6 +103,25 @@ def export_module(asset_id: str, collection_name: str, output: Path) -> dict:
         "objects": len(exportable),
         "meshes": sum(obj.type == "MESH" for obj in exportable),
         "curves": sum(obj.type == "CURVE" for obj in exportable),
+        "artworks": [
+            {
+                "object": obj.name,
+                "thumb": obj.get("gallery_artwork_thumb"),
+            }
+            for obj in exportable
+            if obj.get("gallery_interactive")
+        ],
+        "navigation": [
+            {
+                "object": obj.name,
+                "id": obj.get("gallery_nav_id"),
+                "label": obj.get("gallery_nav_label"),
+                "title": obj.get("gallery_nav_title"),
+                "source_camera": obj.get("gallery_nav_source_camera"),
+            }
+            for obj in exportable
+            if obj.get("gallery_nav_id")
+        ],
         "origin": "blender-master-world",
         "units": "meter",
         "up_axis": "+Y",

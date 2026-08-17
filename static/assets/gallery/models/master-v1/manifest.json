@@ -1,16 +1,18 @@
 {
   "version": "master-v1",
   "source": "/Users/eee/Desktop/code/selfy/brocade-portfolio/assets/gallery/blender/atlantis-gallery-master-v1.blend",
-  "source_mtime": 1786877402.7696676,
+  "source_mtime": 1786944874.9101903,
   "modules": [
     {
       "asset": "atlantis-environment",
       "collection": "00_ENVIRONMENT",
       "glb": "atlantis-environment.glb",
-      "bytes": 6562936,
+      "bytes": 6564340,
       "objects": 120,
       "meshes": 76,
       "curves": 43,
+      "artworks": [],
+      "navigation": [],
       "origin": "blender-master-world",
       "units": "meter",
       "up_axis": "+Y"
@@ -19,10 +21,12 @@
       "asset": "atlantis-route",
       "collection": "01_PROCESSIONAL_ROUTE",
       "glb": "atlantis-route.glb",
-      "bytes": 6829816,
+      "bytes": 6831224,
       "objects": 27,
       "meshes": 3,
       "curves": 0,
+      "artworks": [],
+      "navigation": [],
       "origin": "blender-master-world",
       "units": "meter",
       "up_axis": "+Y"
@@ -31,10 +35,33 @@
       "asset": "atlantis-archive",
       "collection": "02_ARCHIVE_OF_TIDES",
       "glb": "atlantis-archive.glb",
-      "bytes": 7800432,
-      "objects": 77,
+      "bytes": 7851176,
+      "objects": 79,
       "meshes": 71,
       "curves": 0,
+      "artworks": [
+        {
+          "object": "ArchiveOfTides_Artwork_00_Image",
+          "thumb": "/assets/gallery/thumbs/01_color_palette/art_deco_poster_purple_peacock_gold_lines/art_deco_poster_purple_peacock_gold_lines_01.jpg"
+        },
+        {
+          "object": "ArchiveOfTides_Artwork_01_Image",
+          "thumb": "/assets/gallery/thumbs/02_composition/arched_doorway_frame/arched_doorway_frame_01.jpg"
+        },
+        {
+          "object": "ArchiveOfTides_Artwork_02_Image",
+          "thumb": "/assets/gallery/thumbs/03_lighting/candlelit_dinner_still_life/candlelit_dinner_still_life_01.jpg"
+        }
+      ],
+      "navigation": [
+        {
+          "object": "ArchiveOfTides_NavigationMarker",
+          "id": "archive-of-tides",
+          "label": "Archive",
+          "title": "Archive of Tides",
+          "source_camera": "ArchiveOfTidesReviewCamera"
+        }
+      ],
       "origin": "blender-master-world",
       "units": "meter",
       "up_axis": "+Y"
@@ -43,10 +70,33 @@
       "asset": "atlantis-cliff-gallery",
       "collection": "03_CLIFF_GALLERY",
       "glb": "atlantis-cliff-gallery.glb",
-      "bytes": 7787432,
-      "objects": 80,
+      "bytes": 7763368,
+      "objects": 82,
       "meshes": 75,
       "curves": 0,
+      "artworks": [
+        {
+          "object": "CliffGallery_Artwork_00_Image",
+          "thumb": "/assets/gallery/thumbs/04_texture_material/black_leather_handbag/black_leather_handbag_01.jpg"
+        },
+        {
+          "object": "CliffGallery_Artwork_01_Image",
+          "thumb": "/assets/gallery/thumbs/05_character_mood/detached_elegance/detached_elegance_01.jpg"
+        },
+        {
+          "object": "CliffGallery_Artwork_02_Image",
+          "thumb": "/assets/gallery/thumbs/06_product_scene/art_book_magazine/art_book_magazine_01.jpg"
+        }
+      ],
+      "navigation": [
+        {
+          "object": "CliffGallery_NavigationMarker",
+          "id": "cliff-gallery",
+          "label": "Cliff",
+          "title": "Cliff Gallery",
+          "source_camera": "CliffGalleryReviewCamera"
+        }
+      ],
       "origin": "blender-master-world",
       "units": "meter",
       "up_axis": "+Y"
@@ -55,10 +105,49 @@
       "asset": "atlantis-palace-complex",
       "collection": "04_PALACE_COMPLEX",
       "glb": "atlantis-palace-complex.glb",
-      "bytes": 13633592,
-      "objects": 372,
+      "bytes": 13664628,
+      "objects": 374,
       "meshes": 355,
       "curves": 13,
+      "artworks": [
+        {
+          "object": "PalaceInterior_SideArtwork_0_0_Image",
+          "thumb": "/assets/gallery/thumbs/01_color_palette/ceramic_vase_cobalt_blue_gold_leaf/ceramic_vase_cobalt_blue_gold_leaf_01.jpg"
+        },
+        {
+          "object": "PalaceInterior_SideArtwork_0_1_Image",
+          "thumb": "/assets/gallery/thumbs/02_composition/asymmetric_two_person/asymmetric_two_person_01.jpg"
+        },
+        {
+          "object": "PalaceInterior_SideArtwork_0_2_Image",
+          "thumb": "/assets/gallery/thumbs/03_lighting/colored_gel_portrait/colored_gel_portrait_01.jpg"
+        },
+        {
+          "object": "PalaceInterior_SideArtwork_1_0_Image",
+          "thumb": "/assets/gallery/thumbs/04_texture_material/brushed_metal_watch/brushed_metal_watch_01.jpg"
+        },
+        {
+          "object": "PalaceInterior_SideArtwork_1_1_Image",
+          "thumb": "/assets/gallery/thumbs/05_character_mood/determined_sharp_gaze/determined_sharp_gaze_01.jpg"
+        },
+        {
+          "object": "PalaceInterior_SideArtwork_1_2_Image",
+          "thumb": "/assets/gallery/thumbs/06_product_scene/black_cherry_tart/black_cherry_tart_01.jpg"
+        },
+        {
+          "object": "PalaceInterior_FocalArtwork_Image",
+          "thumb": "/assets/gallery/thumbs/01_color_palette/mysterious_portrait_deep_purple_emerald_gold/mysterious_portrait_deep_purple_emerald_gold_01.jpg"
+        }
+      ],
+      "navigation": [
+        {
+          "object": "PalaceNavigationMarker",
+          "id": "sunken-palace",
+          "label": "Palace",
+          "title": "Sunken Palace",
+          "source_camera": "PalaceInteriorWalkReviewCamera"
+        }
+      ],
       "origin": "blender-master-world",
       "units": "meter",
       "up_axis": "+Y"
@@ -67,14 +156,16 @@
       "asset": "atlantis-ecology",
       "collection": "05_ECOLOGY_AND_RUINS",
       "glb": "atlantis-ecology.glb",
-      "bytes": 7336552,
+      "bytes": 7337956,
       "objects": 206,
       "meshes": 132,
       "curves": 41,
+      "artworks": [],
+      "navigation": [],
       "origin": "blender-master-world",
       "units": "meter",
       "up_axis": "+Y"
     }
   ],
-  "total_bytes": 49950760
+  "total_bytes": 50012692
 }

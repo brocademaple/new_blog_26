@@ -1058,13 +1058,13 @@
             <div class="museum-hud">
               <div class="hud-kicker">海底遗址档案馆</div>
               <h1 class="hud-title">{{ .Params.exhibitionTitle | default "The Sunken Archive" }}</h1>
-              <p class="hud-copy">{{ .Params.exhibitionIntro | default "沿沉没长廊深入海底，六座遗址在雾与转折之后逐次出现。" }}</p>
+              <p class="hud-copy">{{ .Params.exhibitionIntro | default "沿沉没长廊进入三座真实展区，墙上保存六个主题的代表作品。" }}</p>
               <div class="hud-actions">
                 <button type="button" id="lobbyButton">返回入口</button>
                 <button type="button" id="guideButton">行走说明</button>
               </div>
             </div>
-            <div class="room-jump" id="roomJump" aria-label="Jump to room"></div>
+            <div class="room-jump" id="roomJump" aria-label="空间导航"></div>
           </div>
           <div class="scene-mount" id="sceneMount"></div>
           <div class="scene-fallback" id="sceneFallback">WebGL is not active here. The full catalog is available below.</div>
@@ -1172,6 +1172,11 @@ const roomDescriptions = {
   reference:'保存可复用的视觉参考。',
   comparison:'并置变体，观察差异与取舍。'
 };
+const defaultSpatialDestinations = [
+  {id:'archive-of-tides', label:'Archive', title:'Archive of Tides', order:10},
+  {id:'cliff-gallery', label:'Cliff', title:'Cliff Gallery', order:20},
+  {id:'sunken-palace', label:'Palace', title:'Sunken Palace', order:30}
+];
 
 const state = {
   artworks: [],
@@ -1179,6 +1184,7 @@ const state = {
   rooms: [],
   activeRoom: 'all',
   currentRoom: 'lobby',
+  spatialDestinations: defaultSpatialDestinations.map(destination => ({...destination})),
   three: null,
   cameraTargets: new Map(),
   viewerItems: [],
@@ -1380,14 +1386,14 @@ function makeButton(label, active, onClick){
   return button;
 }
 
-function makeNavButton(room, index){
+function makeNavButton(destination){
   const button = document.createElement('button');
   button.type = 'button';
-  button.dataset.room = room.id;
-  button.setAttribute('aria-label', `前往 ${room.title || room.label}`);
-  button.classList.toggle('is-active', state.currentRoom === room.id);
-  button.innerHTML = `<span class="nav-label">${room.label}</span>`;
-  button.addEventListener('click', () => focusRoom(room.id));
+  button.dataset.space = destination.id;
+  button.setAttribute('aria-label', `前往 ${destination.title || destination.label}`);
+  button.classList.toggle('is-active', state.currentRoom === destination.id);
+  button.innerHTML = `<span class="nav-label">${destination.label}</span>`;
+  button.addEventListener('click', () => focusSpace(destination.id));
   return button;
 }
 
@@ -1397,7 +1403,7 @@ function renderControls(){
   jump.innerHTML = '';
   filters.innerHTML = '';
 
-  state.rooms.forEach((room, index) => jump.appendChild(makeNavButton(room, index)));
+  state.spatialDestinations.forEach(destination => jump.appendChild(makeNavButton(destination)));
 
   filters.appendChild(makeButton('主题总览', state.activeRoom === 'all', () => setFilter('all')));
   for(const room of state.rooms){
@@ -2164,6 +2170,45 @@ async function initThreeGallery(){
     });
   }
 
+  function registerModelNavigation(root){
+    const destinations = [];
+    const targetMarkers = new Map();
+    state.cameraTargets.clear();
+    root.updateWorldMatrix(true, true);
+    root.traverse(child => {
+      const targetFor = child.userData.gallery_nav_target_for;
+      if(targetFor) targetMarkers.set(targetFor, child.getWorldPosition(new THREE.Vector3()));
+    });
+    root.traverse(child => {
+      const navId = child.userData.gallery_nav_id;
+      if(!navId) return;
+      const position = child.getWorldPosition(new THREE.Vector3());
+      const lookAtTarget = targetMarkers.get(navId);
+      if(!lookAtTarget) return;
+      const destination = {
+        id:navId,
+        label:child.userData.gallery_nav_label || navId,
+        title:child.userData.gallery_nav_title || child.userData.gallery_nav_label || navId,
+        order:Number(child.userData.gallery_nav_order || 999),
+        position,
+        lookAt:lookAtTarget.clone(),
+        fov:Number(child.userData.gallery_nav_fov || 54),
+        sourceCamera:child.userData.gallery_nav_source_camera || ''
+      };
+      state.cameraTargets.set(navId, destination);
+      destinations.push(destination);
+    });
+    if(destinations.length){
+      state.spatialDestinations = destinations.sort((a, b) => a.order - b.order);
+      experience.dataset.navigationState = 'model-authored';
+      experience.dataset.navigationCount = String(destinations.length);
+      renderControls();
+    }else{
+      experience.dataset.navigationState = 'missing';
+      experience.dataset.navigationCount = '0';
+    }
+  }
+
   async function preloadGalleryModels(){
     const experience = document.getElementById('experience');
     experience.dataset.modelState = GLTFLoader ? 'loading' : 'procedural-fallback';
@@ -2215,6 +2260,7 @@ async function initThreeGallery(){
     keys.forEach(key => {
       if(placeModel(root, key)) ready += 1;
     });
+    registerModelNavigation(root);
     experience.dataset.blenderMaster = ready === keys.length ? 'ready' : 'partial';
     experience.dataset.blenderModules = String(ready);
     experience.dataset.palaceState = modelTemplates.has('masterPalace') ? 'ready' : 'missing';
@@ -3188,7 +3234,15 @@ async function initThreeGallery(){
 
     const cameraPosition = group.localToWorld(new THREE.Vector3(0, 2.3, roomDepth / 2 + 2.1));
     const cameraLookAt = group.localToWorld(new THREE.Vector3(0, 2.45, roomDepth / 2 - .72));
-    state.cameraTargets.set(room.id, {position:cameraPosition, lookAt:cameraLookAt});
+    state.cameraTargets.set(room.id, {
+      id:room.id,
+      label:room.label,
+      title:room.title || room.label,
+      position:cameraPosition,
+      lookAt:cameraLookAt,
+      fov:54,
+      sourceCamera:'procedural-room'
+    });
   }
 
   await preloadGalleryModels();
@@ -3209,6 +3263,10 @@ async function initThreeGallery(){
     addSunkenPalace();
     addHeroDressing();
     state.rooms.forEach((room, index) => addRoom(room, index, state.rooms.length));
+    state.spatialDestinations = state.rooms.map((room, index) => ({...room, order:index}));
+    experience.dataset.navigationState = 'procedural-fallback';
+    experience.dataset.navigationCount = String(state.spatialDestinations.length);
+    renderControls();
   }
   renderer.shadowMap.needsUpdate = true;
 
@@ -3287,25 +3345,20 @@ async function initThreeGallery(){
     }
   }
 
-  function focusRoom(roomId){
-    const masterTargets = {
-      color:{position:[-11.5,3.05,-22.0],lookAt:[-11.5,2.9,-29.0]},
-      composition:{position:[11.5,3.05,-22.0],lookAt:[11.5,2.9,-29.0]},
-      lighting:{position:[0,3.0,-39.0],lookAt:[0,3.2,-56.0]},
-      material:{position:[-11.5,3.05,-32.0],lookAt:[-11.5,2.9,-29.0]},
-      mood:{position:[11.5,3.05,-32.0],lookAt:[11.5,2.9,-29.0]},
-      scene:{position:[0,2.65,-46.2],lookAt:[0,3.45,-60.0]}
-    };
-    const target = USE_BLENDER_MASTER ? masterTargets[roomId] : state.cameraTargets.get(roomId);
+  function focusSpace(spaceId){
+    const target = state.cameraTargets.get(spaceId);
     if(!target) return;
-    camera.fov = 54;
+    camera.fov = target.fov || 54;
     camera.updateProjectionMatrix();
-    camera.position.set(...target.position);
-    lookAt(new THREE.Vector3(...target.lookAt));
-    state.currentRoom = roomId;
-    document.getElementById('currentPlace').textContent = (state.rooms.find(room => room.id === roomId) || {}).title || roomId;
+    camera.position.copy(target.position);
+    lookAt(target.lookAt);
+    state.currentRoom = spaceId;
+    document.getElementById('currentPlace').textContent = target.title || spaceId;
+    experience.dataset.navigationTarget = spaceId;
+    experience.dataset.navigationSourceCamera = target.sourceCamera || '';
+    experience.dataset.navigationCamera = camera.position.toArray().map(value => value.toFixed(2)).join(',');
     document.querySelectorAll('.room-jump button').forEach(button => {
-      button.classList.toggle('is-active', button.dataset.room === roomId);
+      button.classList.toggle('is-active', button.dataset.space === spaceId);
     });
   }
 
@@ -3355,12 +3408,19 @@ async function initThreeGallery(){
     document.getElementById('experience').dataset.palaceRoute = 'upper';
     document.querySelectorAll('.room-jump button').forEach(button => button.classList.remove('is-active'));
   };
-  window.focusGalleryArtworkReview = function(){
-    const artwork = interactive.find(object => object.name === 'PalaceInterior_FocalArtwork_Image');
+  window.focusGalleryArtworkReview = function(selector = ''){
+    const orderedArtworks = [...interactive].sort((a, b) => a.name.localeCompare(b.name));
+    const numericIndex = /^\d+$/.test(String(selector)) ? Number(selector) : -1;
+    const artwork = numericIndex >= 0
+      ? orderedArtworks[numericIndex]
+      : orderedArtworks.find(object => object.name === selector || object.userData.gallery_artwork_thumb === selector)
+        || interactive.find(object => object.name === 'PalaceInterior_FocalArtwork_Image');
     if(!artwork) return false;
     artwork.updateWorldMatrix(true, false);
     const target = new THREE.Vector3();
-    new THREE.Box3().setFromObject(artwork).getCenter(target);
+    const bounds = new THREE.Box3().setFromObject(artwork);
+    const size = bounds.getSize(new THREE.Vector3());
+    bounds.getCenter(target);
     const normalAttribute = artwork.geometry && artwork.geometry.getAttribute('normal');
     const normal = normalAttribute
       ? new THREE.Vector3().fromBufferAttribute(normalAttribute, 0)
@@ -3369,19 +3429,22 @@ async function initThreeGallery(){
     setPalaceReviewVisibility(true);
     camera.fov = 48;
     camera.updateProjectionMatrix();
-    camera.position.copy(target).addScaledVector(normal, 4.35);
+    const reviewDistance = Math.max(2.8, Math.max(size.x, size.y, size.z) * 1.65);
+    camera.position.copy(target).addScaledVector(normal, reviewDistance);
     lookAt(target);
     palaceLevel = 'lower';
     state.currentRoom = 'palace-artwork';
-    document.getElementById('currentPlace').textContent = 'Palace Focal Artwork';
+    document.getElementById('currentPlace').textContent = artwork.userData.artwork?.title || 'Artwork Review';
     document.getElementById('experience').dataset.artworkReview = artwork.userData.gallery_artwork_thumb || 'ready';
     document.getElementById('experience').dataset.artworkReviewObject = artwork.name;
     document.getElementById('experience').dataset.artworkReviewTarget = target.toArray().map(value => value.toFixed(2)).join(',');
     document.getElementById('experience').dataset.artworkReviewCamera = camera.position.toArray().map(value => value.toFixed(2)).join(',');
+    document.getElementById('experience').dataset.artworkReviewIndex = String(orderedArtworks.indexOf(artwork));
+    document.getElementById('experience').dataset.artworkReviewCount = String(orderedArtworks.length);
     document.querySelectorAll('.room-jump button').forEach(button => button.classList.remove('is-active'));
     return true;
   };
-  window.focusGalleryRoom = focusRoom;
+  window.focusGallerySpace = focusSpace;
   window.focusGalleryLobby = focusLobby;
 
   mount.addEventListener('pointerdown', event => {
@@ -3478,8 +3541,9 @@ async function initThreeGallery(){
   focusLobby();
   const reviewMode = new URLSearchParams(window.location.search).get('review');
   if(reviewMode === 'palace-upper') window.focusGalleryPalaceUpper();
-  else if(reviewMode === 'artwork') window.focusGalleryArtworkReview();
+  else if(reviewMode === 'artwork') window.focusGalleryArtworkReview(new URLSearchParams(window.location.search).get('artwork') || '');
   else if(reviewMode === 'palace') window.focusGalleryPalace();
+  else if(state.cameraTargets.has(reviewMode)) focusSpace(reviewMode);
   state.three = {
     THREE,
     renderer,
@@ -3490,11 +3554,10 @@ async function initThreeGallery(){
   };
 }
 
-function focusRoom(roomId){
-  if(window.focusGalleryRoom){
-    window.focusGalleryRoom(roomId);
-  }
-  setFilter(roomId, false);
+function focusSpace(spaceId){
+  if(window.focusGallerySpace) window.focusGallerySpace(spaceId);
+  state.currentRoom = spaceId;
+  renderControls();
 }
 
 function focusLobby(){
@@ -3510,7 +3573,7 @@ document.getElementById('archiveLink').addEventListener('click', () => {
 });
 document.getElementById('guideButton').addEventListener('click', () => {
   const copy = document.querySelector('.hud-copy');
-  copy.textContent = 'W A S D 沿长廊行走，按住 Shift 加速。拖动视角观察遗址，点击画框打开作品，右侧目录可快速抵达远端展厅。';
+  copy.textContent = 'W A S D 沿长廊行走，按住 Shift 加速。拖动视角观察遗址，点击画框打开作品；右侧空间导航抵达三座真实展区，六个主题在下方作品目录筛选。';
 });
 
 async function boot(){
