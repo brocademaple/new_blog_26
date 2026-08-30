@@ -349,8 +349,10 @@
     position:absolute;
     inset:0;
     display:none;
+    flex-direction:column;
     align-items:center;
     justify-content:center;
+    gap:14px;
     padding:30px;
     text-align:center;
     color:var(--ink-soft);
@@ -439,6 +441,25 @@
     padding:10px 11px 12px;
     color:rgba(255,255,255,.78);
     font:600 12px/1.45 var(--sans);
+  }
+
+  .series-card span{
+    min-height:72px;
+    padding:14px 13px 16px;
+  }
+
+  .series-card span strong{
+    display:block;
+    font-size:15px;
+    font-weight:700;
+    margin-bottom:4px;
+    color:var(--gold-bright);
+  }
+
+  .series-card span small{
+    font-size:11px;
+    font-weight:500;
+    color:rgba(255,255,255,.65);
   }
 
   .detail{
@@ -734,10 +755,10 @@
             <div class="museum-hud">
               <div class="hud-kicker">Digital museum 00</div>
               <h1 class="hud-title">The Sunken Archive</h1>
-              <p class="hud-copy">海面之下，六座遗址保存着颜色、构图、光线、材质、情绪与物件的实验切片。</p>
+              <p class="hud-copy">沿沉没长廊，进入三座展区。</p>
               <div class="hud-actions">
                 <button type="button" id="lobbyButton">返回中庭</button>
-                <button type="button" id="guideButton">WASD + 拖动视角</button>
+                <button type="button" id="guideButton">行走指南</button>
               </div>
             </div>
             <div class="room-jump" id="roomJump" aria-label="Jump to room"></div>
@@ -745,8 +766,8 @@
           <div class="scene-mount" id="sceneMount"></div>
           <div class="scene-fallback" id="sceneFallback">WebGL is not active here. The full catalog is available below.</div>
           <div class="scene-status">
-            <div class="current-place">CURRENT SITE<strong id="currentPlace">Central Atrium</strong></div>
-            <button type="button" class="archive-link" id="archiveLink">Archive 288 ↓</button>
+            <div class="current-place">当前位置<strong id="currentPlace">中央中庭</strong></div>
+            <button type="button" class="archive-link" id="archiveLink">作品目录 ↓</button>
           </div>
         </section>
       </section>
@@ -755,7 +776,7 @@
         <div class="catalog-head">
           <div>
             <h2 id="catalog-title">Catalog</h2>
-            <p>Archive 收录完整实验，Exhibition 选择每组中的一个变体，Highlight 保留每个主题的核心作品。</p>
+            <p>按主题系列浏览，或查看完整馆藏。</p>
           </div>
           <div class="filter-bar" id="filterBar" aria-label="Filter catalog"></div>
         </div>
@@ -784,9 +805,13 @@
             <h3 id="detailTitle"></h3>
             <p class="detail-meta" id="detailMeta"></p>
           </div>
-          <button type="button" class="drawer-toggle" id="drawerToggle" aria-expanded="true">收起文字</button>
+          <button type="button" class="drawer-toggle" id="drawerToggle" aria-expanded="true">制作笔记</button>
         </div>
-        <div class="detail-fields">
+        <div class="field" id="curatorNoteField" style="margin-bottom: 18px;">
+          <label>策展笔记</label>
+          <p id="detailCuratorNote"></p>
+        </div>
+        <div class="detail-fields" id="techDetails" style="display: none;">
           <div class="field"><label>Prompt</label><p id="detailPrompt"></p></div>
           <div class="field"><label>中文翻译</label><p id="detailTranslation"></p></div>
         </div>
@@ -799,12 +824,12 @@ const DATA_URL = '/assets/gallery/gallery-data.json';
 const LAYOUT_URL = '/assets/gallery/gallery-layouts.json';
 const THREE_URL = 'https://unpkg.com/three@0.160.0/build/three.module.js';
 const roomLabels = {
-  color:'Color',
-  composition:'Recomposition',
-  lighting:'Lighting',
-  material:'Material',
-  mood:'Mood',
-  scene:'Object'
+  color:'色彩',
+  composition:'重构',
+  lighting:'光影',
+  material:'材质',
+  mood:'情绪',
+  scene:'物件'
 };
 
 const state = {
@@ -1047,28 +1072,60 @@ function setFilter(room){
 function renderCatalog(){
   const grid = document.getElementById('catalogGrid');
   const published = state.artworks.filter(item => item.published !== false);
-  const items = state.activeRoom === 'all'
-    ? published
-    : published.filter(item => item.room === state.activeRoom);
-  grid.innerHTML = '';
-  const fragment = document.createDocumentFragment();
-  for(const item of items){
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'art-card';
-    button.addEventListener('click', () => openDetail(item, items));
-    const img = document.createElement('img');
-    img.src = item.thumb;
-    img.alt = item.title;
-    img.loading = 'lazy';
-    img.width = 360;
-    img.height = Math.max(240, Math.round(360 / (item.aspect || .8)));
-    const label = document.createElement('span');
-    label.textContent = item.title;
-    button.append(img, label);
-    fragment.appendChild(button);
+  
+  if(state.activeRoom === 'all'){
+    // 系列封面视图
+    grid.innerHTML = '';
+    grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(220px, 1fr))';
+    const fragment = document.createDocumentFragment();
+    state.rooms.forEach(room => {
+      const roomItems = published.filter(item => item.room === room.id);
+      const highlight = roomItems.find(item => item.highlight) || roomItems[0];
+      if(!highlight) return;
+      
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'art-card series-card';
+      button.addEventListener('click', () => setFilter(room.id));
+      
+      const img = document.createElement('img');
+      img.src = highlight.thumb;
+      img.alt = room.label;
+      img.loading = 'lazy';
+      img.width = 360;
+      img.height = Math.max(300, Math.round(360 / (highlight.aspect || .8)));
+      
+      const label = document.createElement('span');
+      label.innerHTML = `<strong>${room.label}</strong><br><small>${roomItems.length} 件作品</small>`;
+      
+      button.append(img, label);
+      fragment.appendChild(button);
+    });
+    grid.appendChild(fragment);
+  } else {
+    // 作品网格视图
+    grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(150px, 1fr))';
+    const items = published.filter(item => item.room === state.activeRoom);
+    grid.innerHTML = '';
+    const fragment = document.createDocumentFragment();
+    for(const item of items){
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'art-card';
+      button.addEventListener('click', () => openDetail(item, items));
+      const img = document.createElement('img');
+      img.src = item.thumb;
+      img.alt = item.displayTitle || item.title;
+      img.loading = 'lazy';
+      img.width = 360;
+      img.height = Math.max(240, Math.round(360 / (item.aspect || .8)));
+      const label = document.createElement('span');
+      label.textContent = item.displayTitle || item.title;
+      button.append(img, label);
+      fragment.appendChild(button);
+    }
+    grid.appendChild(fragment);
   }
-  grid.appendChild(fragment);
 }
 
 function resetViewerTransform(){
@@ -1089,12 +1146,14 @@ function renderViewerItem(){
   const item = state.viewerItems[state.viewerIndex];
   if(!item) return;
   document.getElementById('detailImage').src = item.src;
-  document.getElementById('detailImage').alt = item.title;
-  document.getElementById('detailTitle').textContent = item.title;
-  document.getElementById('detailMeta').textContent = `${item.roomTitle} / ${item.status === 'highlight' ? 'Highlight' : item.status === 'exhibition' ? 'Exhibition' : 'Archive'} / Variant ${String(item.variant || 1).padStart(2, '0')}`;
+  document.getElementById('detailImage').alt = item.displayTitle || item.title;
+  document.getElementById('detailTitle').textContent = item.displayTitle || item.title;
+  const statusLabel = item.status === 'highlight' ? '核心' : '入展';
+  document.getElementById('detailMeta').textContent = `${roomLabels[item.room] || item.roomTitle} · ${statusLabel}`;
   document.getElementById('detailPrompt').textContent = textOrPending(item.prompt, '该组提示词正在整理中。');
   document.getElementById('detailTranslation').textContent = textOrPending(item.translation, '该组中文翻译正在整理中。');
-  document.getElementById('detailIndex').textContent = `${String(state.viewerIndex + 1).padStart(2, '0')} / ${String(state.viewerItems.length).padStart(2, '0')}`;
+  document.getElementById('detailCuratorNote').textContent = textOrPending(item.curatorNote, '');
+  document.getElementById('detailIndex').textContent = `${String(state.viewerIndex + 1).padStart(2, '00')} / ${String(state.viewerItems.length).padStart(2, '00')}`;
   resetViewerTransform();
 }
 
@@ -1139,11 +1198,12 @@ document.getElementById('zoomIn').addEventListener('click', () => setViewerZoom(
 document.getElementById('zoomOut').addEventListener('click', () => setViewerZoom(state.viewerZoom - .5));
 document.getElementById('zoomReset').addEventListener('click', resetViewerTransform);
 document.getElementById('drawerToggle').addEventListener('click', () => {
-  const drawer = document.getElementById('detailDrawer');
-  const collapsed = drawer.classList.toggle('is-collapsed');
+  const techDetails = document.getElementById('techDetails');
+  const isHidden = techDetails.style.display === 'none';
+  techDetails.style.display = isHidden ? 'grid' : 'none';
   const toggle = document.getElementById('drawerToggle');
-  toggle.textContent = collapsed ? '展开文字' : '收起文字';
-  toggle.setAttribute('aria-expanded', String(!collapsed));
+  toggle.textContent = isHidden ? '收起笔记' : '制作笔记';
+  toggle.setAttribute('aria-expanded', String(isHidden));
 });
 document.getElementById('detail').addEventListener('click', event => {
   if(event.target.id === 'detail') closeDetail();
@@ -1183,9 +1243,9 @@ function showFallback(message){
   experience.classList.add('is-fallback');
 }
 
-async function initThreeGallery(){
+  async function initThreeGallery(){
   if(!webglAvailable() || window.matchMedia('(max-width: 720px)').matches){
-    showFallback('3D mode is reserved for larger screens here. The full catalog is ready below.');
+    showFallback('这台设备先看平面展览。完整作品目录在下方。');
     return;
   }
 
@@ -1193,7 +1253,7 @@ async function initThreeGallery(){
   try{
     THREE = await import(THREE_URL);
   }catch(error){
-    showFallback('Three.js could not load in this browser session. The full catalog is ready below.');
+    showFallback('3D 展馆加载失败。完整作品目录在下方。');
     return;
   }
 
@@ -1345,9 +1405,9 @@ async function initThreeGallery(){
     ctx.fillStyle = 'rgba(4,36,63,.42)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.font = '600 118px "Cormorant Garamond", serif';
+    ctx.font = '600 72px "Noto Serif SC", serif';
     ctx.fillStyle = 'rgba(191,230,255,.76)';
-    ctx.fillText('ATLANTIS ARCHIVE / SITE 00', 96, 108);
+    ctx.fillText('海底遗址档案馆', 96, 108);
 
     const gradient = ctx.createLinearGradient(96, 0, 1320, 0);
     gradient.addColorStop(0, '#fff6d4');
@@ -1360,11 +1420,11 @@ async function initThreeGallery(){
 
     ctx.font = '500 54px "Noto Serif SC", serif';
     ctx.fillStyle = 'rgba(245,243,238,.82)';
-    ctx.fillText('Fragments of color, composition, light, material, mood, and objects preserved below the surface.', 100, 430);
+    ctx.fillText('沿沉没长廊进入六座展厅，色彩、重构、光影、材质、情绪、物件的实验片段留存于此。', 100, 430);
 
-    ctx.font = '600 48px "Cormorant Garamond", serif';
+    ctx.font = '600 48px "Noto Serif SC", serif';
     ctx.fillStyle = '#ffe29a';
-    ctx.fillText(`${state.artworks.filter(item => item.published !== false).length} archived works   /   ${state.rooms.length} sites   /   ${state.artworks.filter(item => item.featured && item.published !== false).length} exhibited`, 100, 542);
+    ctx.fillText(`共 ${state.artworks.filter(item => item.published !== false).length} 件馆藏   /   ${state.rooms.length} 个主题   /   ${state.artworks.filter(item => item.featured && item.published !== false).length} 件入展`, 100, 542);
 
     const tex = new THREE.CanvasTexture(canvas);
     tex.colorSpace = THREE.SRGBColorSpace;
@@ -1657,7 +1717,14 @@ async function initThreeGallery(){
       edge.rotation.z = tile.rotation || 0;
       cluster.add(edge);
 
-      const texture = textureLoader.load(item.src);
+      const texture = textureLoader.load(
+        item.src,
+        undefined,
+        undefined,
+        (error) => {
+          console.error(`Failed to load mosaic texture for ${item.id}:`, item.src, error);
+        }
+      );
       texture.colorSpace = THREE.SRGBColorSpace;
       const art = new THREE.Mesh(
         polygonGeometry(points, 0),
@@ -1751,12 +1818,23 @@ async function initThreeGallery(){
 
     const label = new THREE.Mesh(
       new THREE.PlaneGeometry(3.45, .72),
-      new THREE.MeshBasicMaterial({map:labelTexture(room.title, `${(byRoom.get(room.id) || []).length} selected works`), transparent:true, side:THREE.DoubleSide})
+      new THREE.MeshBasicMaterial({map:labelTexture(room.label, `${(byRoom.get(room.id) || []).length} 件入展作品`), transparent:true, side:THREE.DoubleSide})
     );
     label.position.set(0, roomHeight - .58, entranceZ - .08);
     group.add(label);
 
-    const lamp = new THREE.PointLight(0xffe29a, .72, 8.2, 1.55);
+    // 差异化灯光：冷色系（色彩/重构）偏蓝，暖色系（光影/材质）偏金，中性（情绪/物件）偏深
+    const lightingProfile = {
+      color: {ambient: 0x9bd8ef, intensity: 0.65, spot: 0xc6e9ff},
+      composition: {ambient: 0x8ecfe8, intensity: 0.68, spot: 0xb4ddf2},
+      lighting: {ambient: 0xffe29a, intensity: 0.82, spot: 0xffd48a},
+      material: {ambient: 0xffd48a, intensity: 0.78, spot: 0xffe29a},
+      mood: {ambient: 0x7a9fb8, intensity: 0.58, spot: 0x9bb5c8},
+      scene: {ambient: 0x89a8ba, intensity: 0.62, spot: 0xa5bec9}
+    };
+    const profile = lightingProfile[room.id] || {ambient: 0xffe29a, intensity: 0.72, spot: 0xffe29a};
+    
+    const lamp = new THREE.PointLight(profile.ambient, profile.intensity, 8.2, 1.55);
     lamp.position.set(0, roomHeight - .72, .65);
     lamp.castShadow = false;
     group.add(lamp);
@@ -1766,7 +1844,7 @@ async function initThreeGallery(){
       coolLight.position.set(0, roomHeight - .55, -roomDepth / 2 + .6);
       group.add(coolLight);
 
-      const spot = new THREE.SpotLight(0xffd48a, 3.6, 10, Math.PI / 5, .72, 1.3);
+      const spot = new THREE.SpotLight(profile.spot, 3.6, 10, Math.PI / 5, .72, 1.3);
       spot.position.set(0, roomHeight - .25, 1.1);
       spot.castShadow = true;
       spot.target.position.set(0, 1.3, -.9);
@@ -1780,6 +1858,15 @@ async function initThreeGallery(){
       oculus.rotation.x = Math.PI / 2;
       oculus.position.set(0, roomHeight - .03, -.2);
       group.add(oculus);
+    } else if(room.id === 'lighting'){
+      // 光影展厅额外暖光
+      const warmAccent = new THREE.PointLight(0xffa861, 0.85, 6.5, 1.8);
+      warmAccent.position.set(0, roomHeight - .55, -roomDepth / 2 + .8);
+      group.add(warmAccent);
+    } else if(room.id === 'mood' || room.id === 'scene'){
+      // 情绪/物件展厅压暗环境
+      scene.fog.near = 12;
+      scene.fog.far = 32;
     }
 
     const threshold = new THREE.Mesh(
@@ -1840,11 +1927,18 @@ async function initThreeGallery(){
       frame.castShadow = true;
       group.add(frame);
 
-      const tex = textureLoader.load(item.src);
+      const tex = textureLoader.load(
+        item.src,
+        undefined,
+        undefined,
+        (error) => {
+          console.error(`Failed to load texture for ${item.id}:`, item.src, error);
+        }
+      );
       tex.colorSpace = THREE.SRGBColorSpace;
       const art = new THREE.Mesh(
         new THREE.PlaneGeometry(artW, artH),
-        new THREE.MeshBasicMaterial({map:tex, side:THREE.DoubleSide})
+        new THREE.MeshBasicMaterial({map:tex, side:THREE.DoubleSide, color:0xffffff})
       );
       if(wall === 'back'){
         art.position.set(x, y, -roomDepth / 2 + .22);
@@ -1925,7 +2019,8 @@ async function initThreeGallery(){
     camera.position.copy(target.position);
     lookAt(target.lookAt);
     state.currentRoom = roomId;
-    document.getElementById('currentPlace').textContent = (state.rooms.find(room => room.id === roomId) || {}).title || roomId;
+    const room = state.rooms.find(room => room.id === roomId);
+    document.getElementById('currentPlace').textContent = room ? room.label : roomId;
     document.querySelectorAll('.room-jump button').forEach(button => {
       button.classList.toggle('is-active', button.dataset.room === roomId);
     });
@@ -1935,7 +2030,7 @@ async function initThreeGallery(){
     camera.position.set(0, 2.45, .85);
     lookAt(new THREE.Vector3(0, 2.2, 9.55));
     state.currentRoom = 'lobby';
-    document.getElementById('currentPlace').textContent = 'Central Atrium';
+    document.getElementById('currentPlace').textContent = '中央中庭';
     document.querySelectorAll('.room-jump button').forEach(button => button.classList.remove('is-active'));
   }
   window.focusGalleryRoom = focusRoom;
@@ -2047,7 +2142,7 @@ document.getElementById('archiveLink').addEventListener('click', () => {
 });
 document.getElementById('guideButton').addEventListener('click', () => {
   const copy = document.querySelector('.hud-copy');
-  copy.textContent = '自由行走：W A S D。观察四周：在场景中拖动鼠标。打开作品：点击画框。快速换景：使用右侧遗址目录。';
+  copy.textContent = '行走：WASD 键，加速按 Shift。视角：拖动鼠标。查看作品：点击画框。切换展厅：右侧快速跳转。';
 });
 
 async function boot(){
@@ -2058,7 +2153,7 @@ async function boot(){
     const layoutResponse = await fetch(LAYOUT_URL);
     if(layoutResponse.ok) state.layouts = await layoutResponse.json();
   }catch(error){
-    showFallback('Gallery data could not be loaded. Please check gallery-data.json.');
+    showFallback('作品数据加载失败，请刷新页面重试。');
     return;
   }
   state.rooms = uniqueRooms(state.artworks);

@@ -21,10 +21,11 @@
     "highlight": true,
     "status": "highlight",
     "order": 0,
-    "curatorNote": "",
+    "curatorNote": "装饰艺术风格的配色实验，紫与金的反差在孔雀羽翼的几何线条中展开。",
     "width": 960,
     "height": 1200,
-    "aspect": 0.8
+    "aspect": 0.8,
+    "displayTitle": "紫金孔雀"
   },
   {
     "id": "01-color-palette-art-deco-poster-purple-peacock-gold-lines-02",
@@ -129,10 +130,11 @@
     "highlight": false,
     "status": "exhibition",
     "order": 4,
-    "curatorNote": "",
+    "curatorNote": "钴蓝釉面与金箔装饰的对比,陶瓷光泽在单一物件上的材质演示。",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1,
+    "displayTitle": "钴金瓷瓶"
   },
   {
     "id": "01-color-palette-ceramic-vase-cobalt-blue-gold-leaf-02",
@@ -159,7 +161,7 @@
     "curatorNote": "",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1
   },
   {
     "id": "01-color-palette-ceramic-vase-cobalt-blue-gold-leaf-03",
@@ -186,7 +188,7 @@
     "curatorNote": "",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1
   },
   {
     "id": "01-color-palette-ceramic-vase-cobalt-blue-gold-leaf-04",
@@ -213,7 +215,7 @@
     "curatorNote": "",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1
   },
   {
     "id": "01-color-palette-dark-reading-room-aubergine-olive-brass-01",
@@ -237,10 +239,11 @@
     "highlight": false,
     "status": "exhibition",
     "order": 8,
-    "curatorNote": "",
+    "curatorNote": "茄紫、橄榄绿、黄铜三色在室内场景中的配比,暗调氛围的色彩平衡。",
     "width": 1456,
     "height": 816,
-    "aspect": 1.7843
+    "aspect": 1.7843,
+    "displayTitle": "阅读室"
   },
   {
     "id": "01-color-palette-dark-reading-room-aubergine-olive-brass-02",
@@ -345,10 +348,11 @@
     "highlight": false,
     "status": "exhibition",
     "order": 12,
-    "curatorNote": "",
+    "curatorNote": "午夜蓝与古董金组成的奢华色调,海报形式中的色彩张力实验。",
     "width": 960,
     "height": 1200,
-    "aspect": 0.8
+    "aspect": 0.8,
+    "displayTitle": "午夜金"
   },
   {
     "id": "01-color-palette-luxury-poster-midnight-blue-antique-gold-02",
@@ -453,10 +457,11 @@
     "highlight": false,
     "status": "exhibition",
     "order": 16,
-    "curatorNote": "",
+    "curatorNote": "雾面蓝与哑光金的极简产品配色,柔和对比中的克制表达。",
     "width": 640,
     "height": 800,
-    "aspect": 0.8
+    "aspect": 0.8,
+    "displayTitle": "雾蓝哑金"
   },
   {
     "id": "01-color-palette-minimal-product-misty-blue-matte-gold-02",
@@ -561,10 +566,11 @@
     "highlight": false,
     "status": "exhibition",
     "order": 20,
-    "curatorNote": "",
+    "curatorNote": "深紫与翡翠绿构成的神秘氛围，天鹅绒质感的光影沉入画面。",
     "width": 640,
     "height": 849,
-    "aspect": 0.7538
+    "aspect": 0.7538,
+    "displayTitle": "紫丝绒肖像"
   },
   {
     "id": "01-color-palette-mysterious-portrait-deep-purple-emerald-gold-02",
@@ -669,10 +675,11 @@
     "highlight": false,
     "status": "exhibition",
     "order": 24,
-    "curatorNote": "",
+    "curatorNote": "烟熏紫、鼠尾草绿与哑光金的低饱和度组合,安静的色彩实验。",
     "width": 960,
     "height": 1200,
-    "aspect": 0.8
+    "aspect": 0.8,
+    "displayTitle": "烟紫静物"
   },
   {
     "id": "01-color-palette-quiet-still-life-smoky-purple-sage-muted-gold-02",
@@ -777,10 +784,11 @@
     "highlight": false,
     "status": "exhibition",
     "order": 28,
-    "curatorNote": "",
+    "curatorNote": "海军蓝与香槟金的精致产品配色,冷暖对比的商业化呈现。",
     "width": 640,
     "height": 800,
-    "aspect": 0.8
+    "aspect": 0.8,
+    "displayTitle": "海军蓝"
   },
   {
     "id": "01-color-palette-refined-product-navy-blue-champagne-gold-02",
@@ -885,10 +893,11 @@
     "highlight": true,
     "status": "highlight",
     "order": 32,
-    "curatorNote": "",
+    "curatorNote": "建筑框架作为构图主体，光从门外泄入，人物成为尺度参照。",
     "width": 640,
     "height": 849,
-    "aspect": 0.7538
+    "aspect": 0.7538,
+    "displayTitle": "拱门"
   },
   {
     "id": "02-composition-arched-doorway-frame-02",
@@ -1752,7 +1761,7 @@
     "curatorNote": "",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1
   },
   {
     "id": "02-composition-grid-flat-lay-design-tools-02",
@@ -1779,7 +1788,7 @@
     "curatorNote": "",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1
   },
   {
     "id": "02-composition-grid-flat-lay-design-tools-03",
@@ -1806,7 +1815,7 @@
     "curatorNote": "",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1
   },
   {
     "id": "02-composition-grid-flat-lay-design-tools-04",
@@ -1833,7 +1842,7 @@
     "curatorNote": "",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1
   },
   {
     "id": "02-composition-layered-botanical-interior-01",
@@ -2616,7 +2625,7 @@
     "curatorNote": "",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1
   },
   {
     "id": "02-composition-top-down-graphic-02",
@@ -2643,7 +2652,7 @@
     "curatorNote": "",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1
   },
   {
     "id": "02-composition-top-down-graphic-03",
@@ -2670,7 +2679,7 @@
     "curatorNote": "",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1
   },
   {
     "id": "02-composition-top-down-graphic-04",
@@ -2697,7 +2706,7 @@
     "curatorNote": "",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1
   },
   {
     "id": "02-composition-window-silhouette-01",
@@ -2829,10 +2838,11 @@
     "highlight": true,
     "status": "highlight",
     "order": 104,
-    "curatorNote": "",
+    "curatorNote": "烛火作为唯一光源，静物在暖光中显露材质细节与投影关系。",
     "width": 640,
     "height": 800,
-    "aspect": 0.8
+    "aspect": 0.8,
+    "displayTitle": "烛光静物"
   },
   {
     "id": "03-lighting-candlelit-dinner-still-life-02",
@@ -3909,10 +3919,11 @@
     "highlight": true,
     "status": "highlight",
     "order": 144,
-    "curatorNote": "",
+    "curatorNote": "皮革表面的反光、纹理、磨损痕迹，材质研究的纯粹样本。",
     "width": 640,
     "height": 800,
-    "aspect": 0.8
+    "aspect": 0.8,
+    "displayTitle": "黑皮革"
   },
   {
     "id": "04-texture-material-black-leather-handbag-02",
@@ -4128,7 +4139,7 @@
     "curatorNote": "",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1
   },
   {
     "id": "04-texture-material-cobalt-ceramic-bowl-02",
@@ -4155,7 +4166,7 @@
     "curatorNote": "",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1
   },
   {
     "id": "04-texture-material-cobalt-ceramic-bowl-03",
@@ -4182,7 +4193,7 @@
     "curatorNote": "",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1
   },
   {
     "id": "04-texture-material-cobalt-ceramic-bowl-04",
@@ -4209,7 +4220,7 @@
     "curatorNote": "",
     "width": 640,
     "height": 640,
-    "aspect": 1.0
+    "aspect": 1
   },
   {
     "id": "04-texture-material-embroidered-silk-pouch-01",
@@ -5205,10 +5216,11 @@
     "highlight": true,
     "status": "highlight",
     "order": 192,
-    "curatorNote": "",
+    "curatorNote": "人物姿态与环境的距离感,冷色调强化情绪的克制表达。",
     "width": 640,
     "height": 849,
-    "aspect": 0.7538
+    "aspect": 0.7538,
+    "displayTitle": "疏离"
   },
   {
     "id": "05-character-mood-detached-elegance-02",
@@ -6501,10 +6513,11 @@
     "highlight": true,
     "status": "highlight",
     "order": 240,
-    "curatorNote": "",
+    "curatorNote": "书页、封面、排版作为静物主角,印刷品物质性的视觉记录。",
     "width": 640,
     "height": 800,
-    "aspect": 0.8
+    "aspect": 0.8,
+    "displayTitle": "艺术书"
   },
   {
     "id": "06-product-scene-art-book-magazine-02",
